@@ -1,43 +1,38 @@
 import { Button } from "@/components/ui/button";
-import { ChartBar, Image, LayoutGrid } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 export const Hero = () => {
   return (
-    <section className="pt-32 pb-16 bg-gradient-to-br from-primary to-secondary text-white">
+    <section className="pt-32 pb-24 bg-white">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6 animate-fadeIn">
-            <h1 className="font-heading text-4xl md:text-6xl font-bold leading-tight">
-              Data-Driven Design for Amazon Sellers
-            </h1>
-            <p className="text-lg md:text-xl text-gray-200">
-              Transform your Amazon listings with conversion-focused design backed by
-              marketplace insights and competitive analysis.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-accent hover:bg-accent/90">
-                Get Started
-              </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
-                Learn More
-              </Button>
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <h1 className="font-mono text-4xl md:text-6xl font-bold leading-tight">
+            We make{" "}
+            <span className="text-accent">boring</span>
+            <br />
+            Amazon listings
+            <br />
+            <span className="text-accent">exciting</span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            Data-driven design that converts browsers into buyers. No fluff, just results.
+          </p>
+          <Button size="lg" className="bg-accent hover:bg-accent/90 font-mono">
+            <Sparkles className="mr-2 h-4 w-4" /> Make My Listings Pop
+          </Button>
+
+          <div className="grid grid-cols-3 gap-8 pt-16">
+            <div className="text-center">
+              <div className="text-4xl font-mono font-bold text-accent mb-2">127%</div>
+              <div className="text-sm text-gray-600">Average CTR Increase</div>
             </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4 animate-fadeIn [animation-delay:200ms]">
-            <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
-              <Image className="w-8 h-8 mb-4" />
-              <h3 className="font-heading font-semibold mb-2">Product Listings</h3>
-              <p className="text-sm text-gray-200">Optimized imagery that converts</p>
+            <div className="text-center">
+              <div className="text-4xl font-mono font-bold text-accent mb-2">3.2x</div>
+              <div className="text-sm text-gray-600">Conversion Rate Boost</div>
             </div>
-            <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
-              <ChartBar className="w-8 h-8 mb-4" />
-              <h3 className="font-heading font-semibold mb-2">Data Analysis</h3>
-              <p className="text-sm text-gray-200">Conversion-driven insights</p>
-            </div>
-            <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
-              <LayoutGrid className="w-8 h-8 mb-4" />
-              <h3 className="font-heading font-semibold mb-2">A+ Content</h3>
-              <p className="text-sm text-gray-200">Enhanced brand stories</p>
+            <div className="text-center">
+              <div className="text-4xl font-mono font-bold text-accent mb-2">48h</div>
+              <div className="text-sm text-gray-600">Average Turnaround</div>
             </div>
           </div>
         </div>
