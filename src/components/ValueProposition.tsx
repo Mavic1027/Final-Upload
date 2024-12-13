@@ -1,4 +1,4 @@
-import { BarChart2, Shield, Zap } from "lucide-react";
+import { BarChart2, Brain, Zap } from "lucide-react";
 
 export const ValueProposition = () => {
   const features = [
@@ -8,9 +8,9 @@ export const ValueProposition = () => {
       description: "Data-backed designs that focus on increasing your conversion rates and sales performance.",
     },
     {
-      icon: Shield,
-      title: "Amazon-Specific Guidelines",
-      description: "Designs that perfectly align with Amazon's requirements while standing out in the marketplace.",
+      icon: Brain,
+      title: "AI-Powered Research",
+      description: "Advanced AI analysis of top performers in your niche to identify winning design patterns and opportunities.",
     },
     {
       icon: Zap,
