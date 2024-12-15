@@ -30,9 +30,9 @@ export const Hero = () => {
             <div className="text-right">
               <p className="text-lg md:text-xl font-mono text-gray-800">
                 If you want to grab{" "}
-                <span className="bg-accent/10 px-1">attention</span>, {" "}
-                <span className="bg-accent/10 px-1">drive clicks</span>, and supercharge your{" "}
-                <span className="bg-accent/10 px-1">conversions</span>.
+                <span className="bg-accent/20 px-1">attention</span>, {" "}
+                <span className="bg-accent/20 px-1">drive clicks</span>, and supercharge your{" "}
+                <span className="bg-accent/20 px-1">conversions</span>.
               </p>
               <p className="text-xl font-mono font-bold mt-4">
                 You need a Final Upload.
