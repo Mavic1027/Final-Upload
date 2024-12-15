@@ -21,18 +21,16 @@ export const Hero = () => {
             <Sparkles className="mr-2 h-4 w-4" /> Make My Listings Pop
           </Button>
 
-          <div className="grid grid-cols-3 gap-8 pt-16">
-            <div className="text-center">
-              <div className="text-4xl font-mono font-bold text-accent mb-2">127%</div>
-              <div className="text-sm text-gray-600">Average CTR Increase</div>
+          <div className="grid grid-cols-2 gap-8 pt-16">
+            <div className="text-left">
+              <p className="text-lg md:text-xl font-mono text-gray-800">
+                The power of creative that converts. If you want to grab attention, drive clicks, and supercharge your conversions.
+              </p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-mono font-bold text-accent mb-2">3.2x</div>
-              <div className="text-sm text-gray-600">Conversion Rate Boost</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-mono font-bold text-accent mb-2">48h</div>
-              <div className="text-sm text-gray-600">Average Turnaround</div>
+            <div className="text-right">
+              <p className="text-lg md:text-xl font-mono text-gray-800">
+                You need a Final Upload
+              </p>
             </div>
           </div>
         </div>
