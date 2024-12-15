@@ -34,15 +34,8 @@ export const Hero = () => {
               </p>
             </div>
             <div className="text-right">
-              <p className="text-lg md:text-xl font-mono text-gray-800">
-                If you want to increase{" "}
-                <span className="bg-yellow-200 px-1">6x conversion</span>,
-                generate{" "}
-                <span className="bg-yellow-200 px-1">7.8x traffic</span>, even boost{" "}
-                <span className="bg-yellow-200 px-1">219% performance</span>.
-              </p>
               <p className="text-xl font-mono font-bold mt-4">
-                You need a Design Scientist.
+                You need a Final Upload.
               </p>
             </div>
           </div>
