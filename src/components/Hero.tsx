@@ -21,15 +21,28 @@ export const Hero = () => {
             <Sparkles className="mr-2 h-4 w-4" /> Make My Listings Pop
           </Button>
 
-          <div className="grid grid-cols-2 gap-8 pt-16">
+          <div className="grid grid-cols-2 gap-16 pt-24">
             <div className="text-left">
+              <h2 className="text-3xl font-mono font-bold mb-6">
+                The power of creative that converts
+              </h2>
               <p className="text-lg md:text-xl font-mono text-gray-800">
-                The power of creative that converts. If you want to grab attention, drive clicks, and supercharge your conversions.
+                If you want to grab{" "}
+                <span className="bg-accent/10 px-1">attention</span>, {" "}
+                <span className="bg-accent/10 px-1">drive clicks</span>, and supercharge your{" "}
+                <span className="bg-accent/10 px-1">conversions</span>.
               </p>
             </div>
             <div className="text-right">
               <p className="text-lg md:text-xl font-mono text-gray-800">
-                You need a Final Upload
+                If you want to increase{" "}
+                <span className="bg-yellow-200 px-1">6x conversion</span>,
+                generate{" "}
+                <span className="bg-yellow-200 px-1">7.8x traffic</span>, even boost{" "}
+                <span className="bg-yellow-200 px-1">219% performance</span>.
+              </p>
+              <p className="text-xl font-mono font-bold mt-4">
+                You need a Design Scientist.
               </p>
             </div>
           </div>
