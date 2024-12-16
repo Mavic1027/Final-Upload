@@ -9,8 +9,8 @@ const services = [
   },
   {
     icon: ChartBar,
-    title: "Advertising Assets",
-    description: "Sponsored ad creatives optimized for maximum ROI and brand recognition.",
+    title: "Listing SEO",
+    description: "Great visuals aren't enough, your listings need the right keywords to shine.",
   },
   {
     icon: BookOpen,
