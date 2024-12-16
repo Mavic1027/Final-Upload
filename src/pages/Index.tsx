@@ -9,6 +9,7 @@ import { Pricing } from "@/components/Pricing";
 import { BlogPreview } from "@/components/BlogPreview";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
+import { BackgroundRemoverPromo } from "@/components/BackgroundRemoverPromo";
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
         <Hero />
         <ValueProposition />
         <Services />
+        <BackgroundRemoverPromo />
         <MarketplaceInsights />
         <Testimonials />
         <Portfolio />
