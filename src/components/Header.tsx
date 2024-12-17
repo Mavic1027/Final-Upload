@@ -16,8 +16,12 @@ export const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <a href="/" className="flex items-center space-x-2">
-            <span className="w-8 h-8 bg-accent rounded-full"></span>
-            <span className="font-mono text-lg font-bold">After Hours Creative</span>
+            <img 
+              src="/lovable-uploads/f3a3a9e1-1184-4623-9309-31dee722768b.png" 
+              alt="Final Upload Logo" 
+              className="w-8 h-8 object-contain"
+            />
+            <span className="font-mono text-lg font-bold">final upload</span>
           </a>
 
           <nav className="hidden md:flex items-center space-x-8">
