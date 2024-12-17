@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Progress } from "@/components/ui/progress";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [progress, setProgress] = useState(13);
 
   const navItems = [
     { label: "Design Services", href: "#services" },
@@ -16,11 +18,16 @@ export const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <a href="/" className="flex items-center space-x-2">
-            <img 
-              src="/lovable-uploads/f3a3a9e1-1184-4623-9309-31dee722768b.png" 
-              alt="Final Upload Logo" 
-              className="w-8 h-8 object-contain"
-            />
+            <div className="relative w-12 h-12">
+              <img 
+                src="/lovable-uploads/f3a3a9e1-1184-4623-9309-31dee722768b.png" 
+                alt="Final Upload Logo" 
+                className="w-full h-full object-contain animate-pulse"
+              />
+              <div className="absolute -bottom-2 left-0 right-0 w-full">
+                <Progress value={progress} className="h-1" />
+              </div>
+            </div>
             <span className="font-mono text-lg font-bold">final upload</span>
           </a>
 
