@@ -30,7 +30,7 @@ export const Services = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-            Our Design Services
+            What We Do
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Comprehensive design solutions tailored for Amazon sellers, backed by
