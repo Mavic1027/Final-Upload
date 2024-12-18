@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -15,18 +16,21 @@ export const BlogPreview = () => {
       category: "Design Trends",
       preview: "Discover the latest design strategies that are helping sellers stand out...",
       date: "Mar 15, 2024",
+      slug: "design-trends-2024"
     },
     {
       title: "Optimizing Your Product Images for Amazon Search",
       category: "Amazon Selling Tips",
       preview: "Learn how to create images that rank higher in Amazon search results...",
       date: "Mar 12, 2024",
+      slug: "optimizing-product-images"
     },
     {
       title: "The Impact of A+ Content on Conversion Rates",
       category: "Insights",
       preview: "Real data showing how A+ Content affects buying decisions...",
       date: "Mar 10, 2024",
+      slug: "impact-of-a-plus-content"
     },
   ];
 
@@ -52,9 +56,11 @@ export const BlogPreview = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">{post.preview}</p>
-                <Button variant="link" className="p-0 h-auto text-accent hover:text-accent/90">
-                  Read More <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link to={`/blog/${post.slug}`}>
+                  <Button variant="link" className="p-0 h-auto text-accent hover:text-accent/90">
+                    Read More <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
