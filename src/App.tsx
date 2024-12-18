@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import BackgroundRemover from "./pages/BackgroundRemover";
 import { BlogPost } from "./components/BlogPost";
+import BlogListing from "./pages/BlogListing";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/background-remover" element={<BackgroundRemover />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/blog" element={<BlogListing />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

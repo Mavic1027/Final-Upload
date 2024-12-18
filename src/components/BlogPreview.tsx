@@ -67,9 +67,11 @@ export const BlogPreview = () => {
         </div>
 
         <div className="text-center">
-          <Button size="lg" className="bg-accent hover:bg-accent/90">
-            View All Resources
-          </Button>
+          <Link to="/blog">
+            <Button size="lg" className="bg-accent hover:bg-accent/90">
+              View All Resources
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
