@@ -10,7 +10,7 @@ export const Header = () => {
   const navItems = [
     { label: "Design Services", href: "#services" },
     { label: "Pricing", href: "#pricing" },
-    { label: "Portfolio", href: "#portfolio" },
+    { label: "Blog", href: "#blog" },
   ];
 
   return (
@@ -18,7 +18,7 @@ export const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <a href="/" className="flex items-center space-x-2">
-            <div className="relative w-12 h-12">
+            <div className="relative w-16 h-16">
               <img 
                 src="/lovable-uploads/f3a3a9e1-1184-4623-9309-31dee722768b.png" 
                 alt="Final Upload Logo" 
