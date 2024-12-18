@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useParams, Link } from "react-router-dom";
+import { Header } from "./Header";
 
 export const BlogPost = () => {
   const { slug } = useParams();
@@ -93,12 +94,25 @@ export const BlogPost = () => {
   const post = posts[slug as keyof typeof posts];
 
   if (!post) {
-    return <div>Post not found</div>;
+    return (
+      <div className="min-h-screen bg-secondary">
+        <Header />
+        <div className="container mx-auto px-4 pt-24">
+          <div className="bg-white p-8 rounded-lg shadow-md">
+            <h1 className="text-2xl font-bold mb-4">Post not found</h1>
+            <Link to="/">
+              <Button variant="default">Return to Home</Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="min-h-screen bg-secondary py-16">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-secondary">
+      <Header />
+      <div className="container mx-auto px-4 pt-24">
         <Link to="/#blog">
           <Button variant="ghost" className="mb-8">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to Blog
