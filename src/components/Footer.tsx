@@ -10,9 +10,16 @@ export const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="font-heading text-xl font-bold text-white mb-4">
-              After Hours Creative
-            </h3>
+            <div className="flex items-center gap-2 mb-4">
+              <img 
+                src="/lovable-uploads/8e4b0a16-6c33-496b-bb54-9edf496b20ab.png" 
+                alt="final upload logo" 
+                className="w-8 h-8"
+              />
+              <h3 className="font-heading text-xl font-bold text-white">
+                final upload
+              </h3>
+            </div>
             <p className="mb-4">
               Data-driven design services for Amazon sellers.
             </p>
