@@ -55,8 +55,8 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#portfolio" className="hover:text-accent">
-                  Portfolio
+                <a href="#blog" className="hover:text-accent">
+                  Blog
                 </a>
               </li>
               <li>
