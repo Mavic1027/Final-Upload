@@ -57,6 +57,7 @@ export default {
         sans: ["Inter", "sans-serif"],
         heading: ["Space Mono", "monospace"],
         mono: ["Space Mono", "monospace"],
+        dosis: ["Dosis", "sans-serif"],
       },
     },
   },
