@@ -73,9 +73,9 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-2">
               <li className="flex items-center">
-                <Mail size={16} className="mr-2" />
-                <a href="mailto:hello@afterhourscreative.com" className="hover:text-accent">
-                  hello@afterhourscreative.com
+                <Mail size={16} className="mr-2 flex-shrink-0" />
+                <a href="mailto:ian@finalupload.com" className="hover:text-accent break-all">
+                  ian@finalupload.com
                 </a>
               </li>
             </ul>
@@ -85,7 +85,7 @@ export const Footer = () => {
             <h4 className="font-heading font-semibold text-white mb-4">
               Newsletter
             </h4>
-            <p className="mb-4">
+            <p className="mb-4 text-sm">
               Subscribe for Amazon selling tips and design insights.
             </p>
             <div className="flex gap-2">
@@ -103,7 +103,7 @@ export const Footer = () => {
 
         <div className="border-t border-gray-800 pt-8 text-center">
           <p>
-            © {year} After Hours Creative. All rights reserved.
+            © {year} final upload. All rights reserved.
           </p>
         </div>
       </div>
