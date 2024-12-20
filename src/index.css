@@ -66,3 +66,13 @@
     @apply font-dosis font-light;
   }
 }
+
+.typing-text {
+  border-right: 2px solid #366560;
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { border-color: transparent }
+  50% { border-color: #366560; }
+}
