@@ -28,7 +28,7 @@ export const Hero = () => {
               </h2>
             </div>
             <div className="text-right">
-              <p className="text-lg md:text-xl font-mono text-gray-800">
+              <p className="text-lg md:text-xl font-mono font-normal text-gray-800">
                 If you want to grab{" "}
                 <span className="bg-accent/20 px-1">attention</span>, {" "}
                 <span className="bg-accent/20 px-1">drive clicks</span>, and supercharge your{" "}
