@@ -18,7 +18,7 @@ export const Hero = () => {
         currentIndex--;
         if (currentIndex === 0) {
           isDeleting = false;
-          timeoutId = setTimeout(typeText, 1000); // Pause before typing again
+          timeoutId = setTimeout(typeText, 1000);
         } else {
           timeoutId = setTimeout(typeText, 50);
         }
@@ -27,7 +27,7 @@ export const Hero = () => {
         currentIndex++;
         if (currentIndex === fullText.length) {
           isDeleting = true;
-          timeoutId = setTimeout(typeText, 2000); // Pause before deleting
+          timeoutId = setTimeout(typeText, 2000);
         } else {
           timeoutId = setTimeout(typeText, 150);
         }
@@ -49,7 +49,12 @@ export const Hero = () => {
             We{" "}
             <span className="relative inline-block px-2">
               <span className="relative z-10 text-primary">make</span>
-              <span className="absolute inset-0 border border-yellow-300 transform hover:scale-105 transition-transform duration-200"></span>
+              <span className="absolute inset-0 border border-yellow-300 transform hover:scale-105 transition-transform duration-200">
+                <span className="absolute w-2 h-2 border border-yellow-300 -top-1 -left-1 bg-white"></span>
+                <span className="absolute w-2 h-2 border border-yellow-300 -top-1 -right-1 bg-white"></span>
+                <span className="absolute w-2 h-2 border border-yellow-300 -bottom-1 -left-1 bg-white"></span>
+                <span className="absolute w-2 h-2 border border-yellow-300 -bottom-1 -right-1 bg-white"></span>
+              </span>
             </span>
             {" "}
             <span className="text-accent">boring</span>
@@ -59,7 +64,7 @@ export const Hero = () => {
             <br />
             <span className="group relative inline-block cursor-pointer">
               <span className="relative z-10">exciting</span>
-              <span className="absolute bottom-0 left-0 w-full h-full origin-left scale-x-0 bg-yellow-300/50 -z-10 group-hover:scale-x-100 transition-transform duration-300"></span>
+              <span className="absolute bottom-0 left-0 w-full h-[30%] origin-left scale-x-0 bg-yellow-300/50 group-hover:scale-x-100 transition-transform duration-300"></span>
             </span>
           </h1>
           
