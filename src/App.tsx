@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import BackgroundRemover from "./pages/BackgroundRemover";
 import { BlogPost } from "./components/BlogPost";
 import BlogListing from "./pages/BlogListing";
+import ContactForm from "./pages/ContactForm";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/background-remover" element={<BackgroundRemover />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/blog" element={<BlogListing />} />
+          <Route path="/contact" element={<ContactForm />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

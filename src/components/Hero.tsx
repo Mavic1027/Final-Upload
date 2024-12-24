@@ -71,7 +71,11 @@ export const Hero = () => {
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             Data-driven design that converts browsers into buyers. No fluff, just results.
           </p>
-          <Button size="lg" className="bg-accent hover:bg-accent/90 font-mono">
+          <Button 
+            size="lg" 
+            className="bg-accent hover:bg-accent/90 font-mono"
+            onClick={() => window.location.href = '/contact'}
+          >
             <Sparkles className="mr-2 h-4 w-4" /> Make My Listings Pop
           </Button>
         </div>

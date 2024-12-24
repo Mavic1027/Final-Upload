@@ -15,6 +15,7 @@ export const CTASection = () => {
           <Button
             size="lg"
             className="bg-accent hover:bg-accent/90 text-white px-8 py-6 text-lg"
+            onClick={() => window.location.href = '/contact'}
           >
             Start Your Design Journey
           </Button>

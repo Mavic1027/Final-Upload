@@ -77,7 +77,10 @@ export const Pricing = () => {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full mt-6 bg-accent hover:bg-accent/90">
+                <Button 
+                  className="w-full mt-6 bg-accent hover:bg-accent/90"
+                  onClick={() => window.location.href = '/contact'}
+                >
                   Get Started
                 </Button>
               </CardContent>
