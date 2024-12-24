@@ -9,7 +9,7 @@ export const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-4 gap-12 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
               <img 
@@ -70,8 +70,8 @@ export const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-center">
                 <Mail size={16} className="mr-2" />
-                <a href="mailto:hello@afterhourscreative.com" className="hover:text-accent">
-                  hello@afterhourscreative.com
+                <a href="mailto:ian@finalupload.com" className="hover:text-accent">
+                  ian@finalupload.com
                 </a>
               </li>
             </ul>
