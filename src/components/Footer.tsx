@@ -1,6 +1,7 @@
 import { Facebook, Instagram, Linkedin, Mail, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   const year = new Date().getFullYear();
@@ -55,14 +56,9 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#portfolio" className="hover:text-accent">
-                  Portfolio
-                </a>
-              </li>
-              <li>
-                <a href="#resources" className="hover:text-accent">
+                <Link to="/background-remover" className="hover:text-accent">
                   Resources
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

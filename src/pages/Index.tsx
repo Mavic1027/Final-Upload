@@ -4,7 +4,6 @@ import { ValueProposition } from "@/components/ValueProposition";
 import { Services } from "@/components/Services";
 import { MarketplaceInsights } from "@/components/MarketplaceInsights";
 import { Testimonials } from "@/components/Testimonials";
-import { Portfolio } from "@/components/Portfolio";
 import { Pricing } from "@/components/Pricing";
 import { BlogPreview } from "@/components/BlogPreview";
 import { CTASection } from "@/components/CTASection";
@@ -22,7 +21,6 @@ const Index = () => {
         <BackgroundRemoverPromo />
         <MarketplaceInsights />
         <Testimonials />
-        <Portfolio />
         <Pricing />
         <BlogPreview />
         <CTASection />
