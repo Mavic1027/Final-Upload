@@ -57,7 +57,7 @@ export const Pricing = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8">
           {plans.map((plan) => (
             <Card key={plan.name} className="relative">
               <CardHeader>
@@ -83,12 +83,6 @@ export const Pricing = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        <div className="text-center">
-          <Button variant="outline" size="lg">
-            View Full Pricing Details
-          </Button>
         </div>
       </div>
     </section>

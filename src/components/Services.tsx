@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Image, LayoutGrid, ChartBar, BookOpen } from "lucide-react";
 
 const services = [
@@ -38,7 +37,7 @@ export const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service) => (
             <div
               key={service.title}
@@ -51,12 +50,6 @@ export const Services = () => {
               <p className="text-gray-600">{service.description}</p>
             </div>
           ))}
-        </div>
-
-        <div className="text-center">
-          <Button size="lg" className="bg-accent hover:bg-accent/90">
-            Explore Services
-          </Button>
         </div>
       </div>
     </section>
