@@ -2,10 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Progress } from "@/components/ui/progress";
+import { ContactFormOverlay } from "./ContactFormOverlay";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [progress, setProgress] = useState(13);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const navItems = [
     { label: "Design Services", href: "#services" },
@@ -42,7 +44,11 @@ export const Header = () => {
                 {item.label}
               </a>
             ))}
-            <Button variant="default" className="bg-accent hover:bg-accent/90 font-mono">
+            <Button 
+              variant="default" 
+              className="bg-accent hover:bg-accent/90 font-mono"
+              onClick={() => setIsFormOpen(true)}
+            >
               Get Started
             </Button>
           </nav>
@@ -70,12 +76,24 @@ export const Header = () => {
                 {item.label}
               </a>
             ))}
-            <Button variant="default" className="bg-accent hover:bg-accent/90 font-mono w-full">
+            <Button 
+              variant="default" 
+              className="bg-accent hover:bg-accent/90 font-mono w-full"
+              onClick={() => {
+                setIsFormOpen(true);
+                setIsMenuOpen(false);
+              }}
+            >
               Get Started
             </Button>
           </nav>
         </div>
       )}
+
+      <ContactFormOverlay 
+        isOpen={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+      />
     </header>
   );
 };
