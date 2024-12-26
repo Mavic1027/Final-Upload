@@ -9,6 +9,7 @@ export const Header = () => {
 
   const navItems = [
     { label: "Design Services", href: "#services" },
+    { label: "Free Tool", href: "/background-remover" },
     { label: "Pricing", href: "#pricing" },
     { label: "Blog", href: "#blog" },
   ];
