@@ -57,7 +57,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link to="/background-remover" className="hover:text-accent">
-                  Resources
+                  Free Tool
                 </Link>
               </li>
             </ul>
