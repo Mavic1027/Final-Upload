@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { ContactFormOverlay } from "./ContactFormOverlay";
 
 export const CTASection = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   return (
     <section className="py-20 bg-primary">
       <div className="container mx-auto px-4">
@@ -15,12 +19,17 @@ export const CTASection = () => {
           <Button
             size="lg"
             className="bg-accent hover:bg-accent/90 text-white px-8 py-6 text-lg"
-            onClick={() => window.location.href = '/contact'}
+            onClick={() => setIsFormOpen(true)}
           >
             Start Your Design Journey
           </Button>
         </div>
       </div>
+
+      <ContactFormOverlay 
+        isOpen={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+      />
     </section>
   );
 };

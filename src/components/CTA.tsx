@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { ContactFormOverlay } from "./ContactFormOverlay";
 
 export const CTA = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   return (
     <section className="py-16 bg-gradient-to-r from-accent to-primary text-white">
       <div className="container mx-auto px-4 text-center">
@@ -13,10 +17,16 @@ export const CTA = () => {
         <Button
           size="lg"
           className="bg-white text-primary hover:bg-white/90"
+          onClick={() => setIsFormOpen(true)}
         >
           Schedule a Consultation
         </Button>
       </div>
+
+      <ContactFormOverlay 
+        isOpen={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+      />
     </section>
   );
 };

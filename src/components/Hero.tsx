@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
+import { ContactFormOverlay } from "./ContactFormOverlay";
 
 export const Hero = () => {
   const [displayText, setDisplayText] = useState("");
   const fullText = "Amazon";
   const [isTyping, setIsTyping] = useState(true);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   useEffect(() => {
     let currentIndex = 0;
@@ -74,12 +76,17 @@ export const Hero = () => {
           <Button 
             size="lg" 
             className="bg-accent hover:bg-accent/90 font-mono"
-            onClick={() => window.location.href = '/contact'}
+            onClick={() => setIsFormOpen(true)}
           >
             <Sparkles className="mr-2 h-4 w-4" /> Make My Listings Pop
           </Button>
         </div>
       </div>
+
+      <ContactFormOverlay 
+        isOpen={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+      />
     </section>
   );
 };
