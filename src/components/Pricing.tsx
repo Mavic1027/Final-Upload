@@ -7,8 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useState } from "react";
+import { ContactFormOverlay } from "./ContactFormOverlay";
 
 export const Pricing = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   const plans = [
     {
       name: "Essential",
@@ -79,7 +83,7 @@ export const Pricing = () => {
                 </ul>
                 <Button 
                   className="w-full mt-6 bg-accent hover:bg-accent/90"
-                  onClick={() => window.location.href = '/contact'}
+                  onClick={() => setIsFormOpen(true)}
                 >
                   Get Started
                 </Button>
@@ -88,6 +92,11 @@ export const Pricing = () => {
           ))}
         </div>
       </div>
+
+      <ContactFormOverlay 
+        isOpen={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+      />
     </section>
   );
 };
