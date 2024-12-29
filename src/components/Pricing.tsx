@@ -47,6 +47,19 @@ export const Pricing = () => {
         "Priority Support",
       ],
     },
+    {
+      name: "Enterprise Plus",
+      description: "For organizations needing constant, reliable support",
+      features: [
+        "Dedicated Designer",
+        "Personal Slack Channel",
+        "24/7 Support",
+        "Unlimited Design Work",
+        "Brand Strategy Consulting",
+        "Priority Project Management",
+      ],
+      isCustom: true,
+    },
   ];
 
   return (
@@ -61,16 +74,18 @@ export const Pricing = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-4 gap-8">
           {plans.map((plan) => (
             <Card key={plan.name} className="relative">
               <CardHeader>
                 <CardTitle>{plan.name}</CardTitle>
                 <CardDescription>{plan.description}</CardDescription>
-                <div className="mt-4">
-                  <span className="text-4xl font-bold">${plan.price}</span>
-                  <span className="text-gray-600">/project</span>
-                </div>
+                {!plan.isCustom && (
+                  <div className="mt-4">
+                    <span className="text-4xl font-bold">${plan.price}</span>
+                    <span className="text-gray-600">/project</span>
+                  </div>
+                )}
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
@@ -85,7 +100,7 @@ export const Pricing = () => {
                   className="w-full mt-6 bg-accent hover:bg-accent/90"
                   onClick={() => setIsFormOpen(true)}
                 >
-                  Get Started
+                  {plan.isCustom ? "Talk to Sales" : "Get Started"}
                 </Button>
               </CardContent>
             </Card>
