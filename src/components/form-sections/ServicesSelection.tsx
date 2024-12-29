@@ -22,7 +22,7 @@ export const ServicesSelection = ({ form }: { form: UseFormReturn<any> }) => {
     <>
       <FormField
         control={form.control}
-        name="selectedPlan"
+        name="selected_plan"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Selected Plan</FormLabel>

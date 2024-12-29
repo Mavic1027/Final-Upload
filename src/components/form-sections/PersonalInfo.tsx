@@ -7,7 +7,7 @@ export const PersonalInfo = ({ form }: { form: UseFormReturn<any> }) => {
     <div className="grid md:grid-cols-2 gap-6">
       <FormField
         control={form.control}
-        name="firstName"
+        name="first_name"
         render={({ field }) => (
           <FormItem>
             <FormLabel>First name</FormLabel>
@@ -21,7 +21,7 @@ export const PersonalInfo = ({ form }: { form: UseFormReturn<any> }) => {
       
       <FormField
         control={form.control}
-        name="lastName"
+        name="last_name"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Last name</FormLabel>

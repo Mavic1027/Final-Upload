@@ -2,22 +2,29 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { PersonalInfo } from "./form-sections/PersonalInfo";
 import { BusinessInfo } from "./form-sections/BusinessInfo";
 import { ServicesSelection } from "./form-sections/ServicesSelection";
-import { submitContactForm } from "@/utils/formSubmission";
+import { submitContactForm, FormSubmission } from "@/utils/formSubmission";
 
 const formSchema = z.object({
-  firstName: z.string().min(2, "First name must be at least 2 characters"),
-  lastName: z.string().min(2, "Last name must be at least 2 characters"),
+  first_name: z.string().min(2, "First name must be at least 2 characters"),
+  last_name: z.string().min(2, "Last name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
-  storeName: z.string().min(1, "Store name is required"),
-  parentAsins: z.string().min(1, "Number of ASINs is required"),
-  productLink: z.string().url("Invalid Amazon product link"),
-  selectedPlan: z.string().min(1, "Please select a plan"),
+  store_name: z.string().min(1, "Store name is required"),
+  parent_asins: z.string().min(1, "Number of ASINs is required"),
+  product_link: z.string().url("Invalid Amazon product link"),
+  selected_plan: z.string().min(1, "Please select a plan"),
   services: z.array(z.string()).min(1, "Please select at least one service"),
   challenge: z.string().min(10, "Please describe your challenge"),
 });
@@ -37,7 +44,7 @@ export const ContactFormFields = ({ onSuccess }: ContactFormFieldsProps) => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      await submitContactForm(values);
+      await submitContactForm(values as FormSubmission);
       toast({
         title: "Form submitted!",
         description: "We'll be in touch soon.",

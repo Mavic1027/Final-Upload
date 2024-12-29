@@ -21,7 +21,7 @@ export const BusinessInfo = ({ form }: { form: UseFormReturn<any> }) => {
 
       <FormField
         control={form.control}
-        name="storeName"
+        name="store_name"
         render={({ field }) => (
           <FormItem>
             <FormLabel>What is your Amazon Store Name?</FormLabel>
@@ -35,7 +35,7 @@ export const BusinessInfo = ({ form }: { form: UseFormReturn<any> }) => {
 
       <FormField
         control={form.control}
-        name="parentAsins"
+        name="parent_asins"
         render={({ field }) => (
           <FormItem>
             <FormLabel>How many parent ASINs do you have?</FormLabel>
@@ -49,7 +49,7 @@ export const BusinessInfo = ({ form }: { form: UseFormReturn<any> }) => {
 
       <FormField
         control={form.control}
-        name="productLink"
+        name="product_link"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Amazon Product Link</FormLabel>

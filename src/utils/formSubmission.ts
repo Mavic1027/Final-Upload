@@ -1,13 +1,13 @@
 import { supabase } from "@/integrations/supabase/client";
 
 export type FormSubmission = {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   email: string;
-  storeName: string;
-  parentAsins: string;
-  productLink: string;
-  selectedPlan: string;
+  store_name: string;
+  parent_asins: string;
+  product_link: string;
+  selected_plan: string;
   services: string[];
   challenge: string;
 };
@@ -15,7 +15,7 @@ export type FormSubmission = {
 export const submitContactForm = async (data: FormSubmission) => {
   const { error } = await supabase
     .from('contact_form_submissions')
-    .insert([data]);
+    .insert(data);
 
   if (error) {
     console.error('Error submitting form:', error);
