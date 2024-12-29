@@ -29,7 +29,7 @@ const formSchema = z.object({
   storeName: z.string().min(1, "Store name is required"),
   parentAsins: z.string().min(1, "Number of ASINs is required"),
   productLink: z.string().url("Invalid Amazon product link"),
-  annualRevenue: z.string().min(1, "Please select your annual revenue"),
+  selectedPlan: z.string().min(1, "Please select a plan"),
   services: z.array(z.string()).min(1, "Please select at least one service"),
   challenge: z.string().min(10, "Please describe your challenge"),
 });
@@ -39,6 +39,13 @@ const services = [
   { id: "brand-story", label: "Brand Story" },
   { id: "a-plus", label: "A+ Content" },
   { id: "lifestyle", label: "Lifestyle Images" },
+];
+
+const plans = [
+  { value: "essential", label: "Essential" },
+  { value: "professional", label: "Professional" },
+  { value: "enterprise", label: "Enterprise" },
+  { value: "enterprise-plus", label: "Enterprise Plus" },
 ];
 
 interface ContactFormFieldsProps {
@@ -158,21 +165,22 @@ export const ContactFormFields = ({ onSuccess }: ContactFormFieldsProps) => {
 
           <FormField
             control={form.control}
-            name="annualRevenue"
+            name="selectedPlan"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Annual revenue</FormLabel>
+                <FormLabel>Selected Plan</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Please Select" />
+                      <SelectValue placeholder="Select your plan" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="0-100k">$0 - $100k</SelectItem>
-                    <SelectItem value="100k-500k">$100k - $500k</SelectItem>
-                    <SelectItem value="500k-1m">$500k - $1M</SelectItem>
-                    <SelectItem value="1m-plus">$1M+</SelectItem>
+                    {plans.map((plan) => (
+                      <SelectItem key={plan.value} value={plan.value}>
+                        {plan.label}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 <FormMessage />
