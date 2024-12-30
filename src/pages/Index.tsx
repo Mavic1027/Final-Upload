@@ -12,21 +12,23 @@ import { BackgroundRemoverPromo } from "@/components/BackgroundRemoverPromo";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main>
-        <Hero />
-        <ValueProposition />
-        <Services />
-        <BackgroundRemoverPromo />
-        <MarketplaceInsights />
-        <Testimonials />
-        <Pricing />
-        <BlogPreview />
-        <CTASection />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <div className="min-h-screen">
+        <Header />
+        <main>
+          <Hero />
+          <ValueProposition />
+          <Services />
+          <BackgroundRemoverPromo />
+          <MarketplaceInsights />
+          <Testimonials />
+          <Pricing />
+          <BlogPreview />
+          <CTASection />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 
