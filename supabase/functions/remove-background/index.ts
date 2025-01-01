@@ -13,6 +13,7 @@ serve(async (req) => {
   try {
     const { image_data } = await req.json()
 
+    console.log('Calling remove.bg API...')
     const response = await fetch('https://api.remove.bg/v1.0/removebg', {
       method: 'POST',
       headers: {
@@ -21,15 +22,21 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         image_file_b64: image_data,
+        size: 'auto',
+        format: 'auto',
+        bg_color: null,
+        output_format: 'base64' // Explicitly request base64 output
       }),
     })
 
     if (!response.ok) {
       const error = await response.text()
+      console.error('Remove.bg API error:', error)
       throw new Error(`Remove.bg API error: ${error}`)
     }
 
     const data = await response.json()
+    console.log('Successfully processed image')
 
     return new Response(
       JSON.stringify({ image: data.data.result_b64 }),
@@ -38,6 +45,7 @@ serve(async (req) => {
       },
     )
   } catch (error) {
+    console.error('Error in remove-background function:', error)
     return new Response(
       JSON.stringify({ error: error.message }),
       {
