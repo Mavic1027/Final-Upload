@@ -8,13 +8,30 @@ import ImageDropzone from "./background-remover/ImageDropzone";
 import ProcessingButton from "./background-remover/ProcessingButton";
 import ResultDisplay from "./background-remover/ResultDisplay";
 
+const MAX_USES = 3; // Maximum number of times a user can use the tool
+
 const ImageUploader = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [processedImage, setProcessedImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [isEmailSubmitted, setIsEmailSubmitted] = useState(false);
+  const [remainingUses, setRemainingUses] = useState(MAX_USES);
   const { toast } = useToast();
+
+  const verifyEmail = async (email: string) => {
+    try {
+      const { data, error } = await supabase.functions.invoke('verify-email', {
+        body: { email }
+      });
+      
+      if (error) throw error;
+      return data?.isValid || false;
+    } catch (error) {
+      console.error('Error verifying email:', error);
+      return false;
+    }
+  };
 
   const handleEmailSubmit = async () => {
     if (!email || !email.includes('@')) {
@@ -26,14 +43,31 @@ const ImageUploader = () => {
       return;
     }
 
+    const isValid = await verifyEmail(email);
+    if (!isValid) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address that can receive messages.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('background_remover_emails')
-        .insert([{ email }]);
+        .upsert([{ email, usage_count: 0 }], {
+          onConflict: 'email',
+          ignoreDuplicates: false
+        })
+        .select('usage_count')
+        .single();
 
       if (error) throw error;
 
       setIsEmailSubmitted(true);
+      setRemainingUses(MAX_USES - (data?.usage_count || 0));
+      
       toast({
         title: "Success",
         description: "You can now use the background remover tool!",
@@ -49,10 +83,18 @@ const ImageUploader = () => {
   };
 
   const handleRemoveBackground = async () => {
-    if (!selectedImage) return;
+    if (!selectedImage || remainingUses <= 0) return;
 
     setLoading(true);
     try {
+      // Update usage count first
+      const { error: updateError } = await supabase
+        .from('background_remover_emails')
+        .update({ usage_count: supabase.sql`usage_count + 1` })
+        .eq('email', email);
+
+      if (updateError) throw updateError;
+
       const reader = new FileReader();
       reader.readAsDataURL(selectedImage);
       
@@ -84,6 +126,7 @@ const ImageUploader = () => {
       }
 
       setProcessedImage(`data:image/png;base64,${data.image}`);
+      setRemainingUses(prev => prev - 1);
       
       toast({
         title: "Success",
@@ -108,6 +151,7 @@ const ImageUploader = () => {
           <h2 className="text-lg font-semibold">Enter your email to get started</h2>
           <p className="text-sm text-gray-600">
             We'll send you updates about our AI background removal tool and other exciting features.
+            You can use the tool up to {MAX_USES} times with one email address.
           </p>
           <div className="flex gap-2">
             <Input
@@ -130,6 +174,9 @@ const ImageUploader = () => {
     <div className="space-y-6">
       <Card className="p-6">
         <div className="flex flex-col items-center space-y-4">
+          <div className="w-full text-right text-sm text-gray-600">
+            Remaining uses: {remainingUses}
+          </div>
           <ImageDropzone
             selectedImage={selectedImage}
             onImageSelect={setSelectedImage}
@@ -138,7 +185,13 @@ const ImageUploader = () => {
             <ProcessingButton
               onClick={handleRemoveBackground}
               loading={loading}
+              disabled={remainingUses <= 0}
             />
+          )}
+          {remainingUses <= 0 && (
+            <p className="text-red-500 text-sm">
+              You have reached the maximum number of uses for this email.
+            </p>
           )}
         </div>
       </Card>
