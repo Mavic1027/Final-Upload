@@ -34,23 +34,32 @@ const ImageUploader = () => {
     try {
       // Convert the image file to base64
       const reader = new FileReader();
-      const base64Promise = new Promise<string>((resolve) => {
+      const base64Promise = new Promise<string>((resolve, reject) => {
         reader.onload = () => {
           const base64 = reader.result as string;
-          resolve(base64.split(',')[1]); // Remove data URL prefix
+          // Remove data URL prefix and get only the base64 data
+          const base64Data = base64.split(',')[1];
+          resolve(base64Data);
         };
+        reader.onerror = reject;
       });
       reader.readAsDataURL(selectedImage);
       const base64Data = await base64Promise;
 
-      // Call remove.bg API using Supabase Edge Function
+      console.log('Sending image to remove-background function...');
       const { data, error } = await supabase.functions.invoke('remove-background', {
         body: { image_data: base64Data }
       });
 
-      if (error) throw error;
+      if (error) {
+        console.error('Function error:', error);
+        throw error;
+      }
 
-      // Convert the returned base64 image to a data URL
+      if (!data?.image) {
+        throw new Error('No image data in response');
+      }
+
       setProcessedImage(`data:image/png;base64,${data.image}`);
       
       toast({

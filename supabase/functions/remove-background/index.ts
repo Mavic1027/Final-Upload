@@ -13,6 +13,10 @@ serve(async (req) => {
   try {
     const { image_data } = await req.json()
 
+    if (!image_data) {
+      throw new Error('No image data provided')
+    }
+
     console.log('Calling remove.bg API...')
     const response = await fetch('https://api.remove.bg/v1.0/removebg', {
       method: 'POST',
@@ -23,9 +27,9 @@ serve(async (req) => {
       body: JSON.stringify({
         image_file_b64: image_data,
         size: 'auto',
-        format: 'auto',
+        format: 'png',
         bg_color: null,
-        output_format: 'base64' // Explicitly request base64 output
+        output_format: 'base64'
       }),
     })
 
@@ -37,6 +41,10 @@ serve(async (req) => {
 
     const data = await response.json()
     console.log('Successfully processed image')
+
+    if (!data.data?.result_b64) {
+      throw new Error('Invalid response from remove.bg API')
+    }
 
     return new Response(
       JSON.stringify({ image: data.data.result_b64 }),
