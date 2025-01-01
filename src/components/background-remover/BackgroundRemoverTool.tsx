@@ -27,11 +27,9 @@ const BackgroundRemoverTool = ({
 
     setLoading(true);
     try {
-      // Update usage count using a parameterized query
-      const { error: updateError } = await supabase
-        .from('background_remover_emails')
-        .update({ usage_count: supabase.rpc('increment_usage_count') })
-        .eq('email', email);
+      // Update usage count using RPC call to the increment_usage_count function
+      const { data: usageData, error: updateError } = await supabase
+        .rpc('increment_usage_count');
 
       if (updateError) throw updateError;
 
