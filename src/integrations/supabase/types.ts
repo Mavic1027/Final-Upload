@@ -77,7 +77,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_usage_count: {
+        Args: {
+          user_email: string
+        }
+        Returns: number
+      }
     }
     Enums: {
       [_ in never]: never
