@@ -22,6 +22,7 @@ serve(async (req) => {
       method: 'POST',
       headers: {
         'X-Api-Key': Deno.env.get('REMOVE_BG_API_KEY') || '',
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -34,31 +35,44 @@ serve(async (req) => {
     })
 
     if (!response.ok) {
-      const error = await response.text()
-      console.error('Remove.bg API error:', error)
-      throw new Error(`Remove.bg API error: ${error}`)
+      const errorText = await response.text()
+      console.error('Remove.bg API error:', errorText)
+      throw new Error(`Remove.bg API error: ${errorText}`)
     }
 
-    const data = await response.json()
+    const result = await response.json()
     console.log('Successfully processed image')
 
-    if (!data.data?.result_b64) {
+    if (!result.data?.result_b64) {
+      console.error('Invalid API response:', result)
       throw new Error('Invalid response from remove.bg API')
     }
 
     return new Response(
-      JSON.stringify({ image: data.data.result_b64 }),
+      JSON.stringify({ 
+        success: true,
+        image: result.data.result_b64 
+      }),
       {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json'
+        },
       },
     )
   } catch (error) {
     console.error('Error in remove-background function:', error)
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        success: false,
+        error: error.message 
+      }),
       {
         status: 400,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json'
+        },
       },
     )
   }

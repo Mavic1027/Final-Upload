@@ -36,13 +36,17 @@ const ImageUploader = () => {
       const reader = new FileReader();
       const base64Promise = new Promise<string>((resolve, reject) => {
         reader.onload = () => {
-          const base64 = reader.result as string;
-          // Remove data URL prefix and get only the base64 data
+          if (!reader.result) {
+            reject(new Error('Failed to read file'));
+            return;
+          }
+          const base64 = reader.result.toString();
           const base64Data = base64.split(',')[1];
           resolve(base64Data);
         };
         reader.onerror = reject;
       });
+
       reader.readAsDataURL(selectedImage);
       const base64Data = await base64Promise;
 
@@ -56,8 +60,8 @@ const ImageUploader = () => {
         throw error;
       }
 
-      if (!data?.image) {
-        throw new Error('No image data in response');
+      if (!data?.success || !data?.image) {
+        throw new Error(data?.error || 'Failed to process image');
       }
 
       setProcessedImage(`data:image/png;base64,${data.image}`);
@@ -70,7 +74,7 @@ const ImageUploader = () => {
       console.error('Error:', error);
       toast({
         title: "Error",
-        description: "Failed to remove background. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to remove background. Please try again.",
         variant: "destructive",
       });
     } finally {
