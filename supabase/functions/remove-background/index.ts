@@ -27,11 +27,8 @@ serve(async (req) => {
       body: JSON.stringify({
         image_file_b64: image_data,
         size: 'auto',
-        format: 'auto',
-        type: 'auto',
-        channels: 'rgba',
+        format: 'png',
         bg_color: null,
-        return_type: 'base64'
       }),
     })
 
@@ -41,18 +38,19 @@ serve(async (req) => {
       throw new Error(`Remove.bg API error: ${errorText}`)
     }
 
-    const result = await response.json()
-    console.log('Successfully processed image')
+    // Get the response as a buffer since it's a binary response
+    const imageBuffer = await response.arrayBuffer()
+    // Convert buffer to base64
+    const base64Image = btoa(
+      String.fromCharCode(...new Uint8Array(imageBuffer))
+    )
 
-    if (!result.data || !result.data.result_b64) {
-      console.error('Invalid API response:', result)
-      throw new Error('Invalid response from remove.bg API')
-    }
+    console.log('Successfully processed image')
 
     return new Response(
       JSON.stringify({ 
         success: true,
-        image: result.data.result_b64 
+        image: base64Image 
       }),
       {
         headers: { 
