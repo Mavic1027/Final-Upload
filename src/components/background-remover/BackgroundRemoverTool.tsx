@@ -29,7 +29,7 @@ const BackgroundRemoverTool = ({
     try {
       // Update usage count using RPC call to the increment_usage_count function
       const { data: usageData, error: updateError } = await supabase
-        .rpc('increment_usage_count');
+        .rpc('increment_usage_count', { user_email: email });
 
       if (updateError) throw updateError;
 
