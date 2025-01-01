@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import ImageDropzone from "./background-remover/ImageDropzone";
@@ -10,7 +12,41 @@ const ImageUploader = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [processedImage, setProcessedImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isEmailSubmitted, setIsEmailSubmitted] = useState(false);
   const { toast } = useToast();
+
+  const handleEmailSubmit = async () => {
+    if (!email || !email.includes('@')) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from('background_remover_emails')
+        .insert([{ email }]);
+
+      if (error) throw error;
+
+      setIsEmailSubmitted(true);
+      toast({
+        title: "Success",
+        description: "You can now use the background remover tool!",
+      });
+    } catch (error) {
+      console.error('Error storing email:', error);
+      toast({
+        title: "Error",
+        description: "Failed to submit email. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
 
   const handleRemoveBackground = async () => {
     if (!selectedImage) return;
@@ -64,6 +100,31 @@ const ImageUploader = () => {
       setLoading(false);
     }
   };
+
+  if (!isEmailSubmitted) {
+    return (
+      <Card className="p-6">
+        <div className="space-y-4">
+          <h2 className="text-lg font-semibold">Enter your email to get started</h2>
+          <p className="text-sm text-gray-600">
+            We'll send you updates about our AI background removal tool and other exciting features.
+          </p>
+          <div className="flex gap-2">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="flex-1"
+            />
+            <Button onClick={handleEmailSubmit}>
+              Submit
+            </Button>
+          </div>
+        </div>
+      </Card>
+    );
+  }
 
   return (
     <div className="space-y-6">
