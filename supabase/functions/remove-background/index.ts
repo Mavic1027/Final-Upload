@@ -22,15 +22,16 @@ serve(async (req) => {
       method: 'POST',
       headers: {
         'X-Api-Key': Deno.env.get('REMOVE_BG_API_KEY') || '',
-        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         image_file_b64: image_data,
         size: 'auto',
-        format: 'png',
+        format: 'auto',
+        type: 'auto',
+        channels: 'rgba',
         bg_color: null,
-        output_format: 'base64'
+        return_type: 'base64'
       }),
     })
 
@@ -43,7 +44,7 @@ serve(async (req) => {
     const result = await response.json()
     console.log('Successfully processed image')
 
-    if (!result.data?.result_b64) {
+    if (!result.data || !result.data.result_b64) {
       console.error('Invalid API response:', result)
       throw new Error('Invalid response from remove.bg API')
     }

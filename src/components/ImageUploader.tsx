@@ -32,9 +32,10 @@ const ImageUploader = () => {
 
     setLoading(true);
     try {
-      // Convert the image file to base64
       const reader = new FileReader();
-      const base64Promise = new Promise<string>((resolve, reject) => {
+      reader.readAsDataURL(selectedImage);
+      
+      const base64Data = await new Promise<string>((resolve, reject) => {
         reader.onload = () => {
           if (!reader.result) {
             reject(new Error('Failed to read file'));
@@ -44,11 +45,8 @@ const ImageUploader = () => {
           const base64Data = base64.split(',')[1];
           resolve(base64Data);
         };
-        reader.onerror = reject;
+        reader.onerror = (error) => reject(new Error('Failed to read file'));
       });
-
-      reader.readAsDataURL(selectedImage);
-      const base64Data = await base64Promise;
 
       console.log('Sending image to remove-background function...');
       const { data, error } = await supabase.functions.invoke('remove-background', {
