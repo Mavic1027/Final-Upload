@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Upload, Image as ImageIcon } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const ImageUploader = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -31,13 +32,33 @@ const ImageUploader = () => {
 
     setLoading(true);
     try {
-      // Here we'll integrate the remove.bg API later
-      // For now, just show a toast
+      // Convert the image file to base64
+      const reader = new FileReader();
+      const base64Promise = new Promise<string>((resolve) => {
+        reader.onload = () => {
+          const base64 = reader.result as string;
+          resolve(base64.split(',')[1]); // Remove data URL prefix
+        };
+      });
+      reader.readAsDataURL(selectedImage);
+      const base64Data = await base64Promise;
+
+      // Call remove.bg API using Supabase Edge Function
+      const { data, error } = await supabase.functions.invoke('remove-background', {
+        body: { image_data: base64Data }
+      });
+
+      if (error) throw error;
+
+      // Convert the returned base64 image to a data URL
+      setProcessedImage(`data:image/png;base64,${data.image}`);
+      
       toast({
-        title: "Coming Soon",
-        description: "Background removal will be available once API key is configured.",
+        title: "Success",
+        description: "Background removed successfully!",
       });
     } catch (error) {
+      console.error('Error:', error);
       toast({
         title: "Error",
         description: "Failed to remove background. Please try again.",
