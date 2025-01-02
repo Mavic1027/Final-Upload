@@ -3,18 +3,42 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { ContactFormOverlay } from "./ContactFormOverlay";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [progress, setProgress] = useState(13);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems = [
-    { label: "Design Services", href: "#services" },
+    { label: "Design Services", href: "/#services" },
     { label: "Free Tool", href: "/background-remover" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Blog", href: "#blog" },
+    { label: "Pricing", href: "/#pricing" },
+    { label: "Blog", href: "/#blog" },
   ];
+
+  const handleNavigation = (href: string) => {
+    if (href.startsWith('/#')) {
+      // If we're not on the home page and trying to access a section
+      if (location.pathname !== '/') {
+        navigate('/');
+        // Add a small delay to allow the navigation to complete
+        setTimeout(() => {
+          const element = document.querySelector(href.substring(1));
+          element?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        // If we're already on the home page, just scroll
+        const element = document.querySelector(href.substring(1));
+        element?.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // For non-anchor links, just navigate
+      navigate(href);
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-white z-50">
@@ -36,13 +60,13 @@ export const Header = () => {
 
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
+              <button
                 key={item.label}
-                href={item.href}
+                onClick={() => handleNavigation(item.href)}
                 className="text-gray-600 hover:text-primary transition-colors font-mono"
               >
                 {item.label}
-              </a>
+              </button>
             ))}
             <Button 
               variant="default" 
@@ -67,14 +91,16 @@ export const Header = () => {
         <div className="md:hidden bg-white border-t">
           <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             {navItems.map((item) => (
-              <a
+              <button
                 key={item.label}
-                href={item.href}
-                className="text-gray-600 hover:text-primary transition-colors font-mono"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  handleNavigation(item.href);
+                  setIsMenuOpen(false);
+                }}
+                className="text-gray-600 hover:text-primary transition-colors font-mono text-left"
               >
                 {item.label}
-              </a>
+              </button>
             ))}
             <Button 
               variant="default" 
