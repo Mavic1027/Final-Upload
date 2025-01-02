@@ -5,8 +5,8 @@ export type FormSubmission = {
   last_name: string;
   email: string;
   store_name: string;
-  parent_asins: string;
-  product_link: string;
+  parent_asins?: string;
+  product_link?: string;
   selected_plan: string;
   services: string[];
   challenge: string;
