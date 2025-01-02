@@ -38,8 +38,8 @@ export type Database = {
           first_name: string
           id: string
           last_name: string
-          parent_asins: string
-          product_link: string
+          parent_asins: string | null
+          product_link: string | null
           selected_plan: string
           services: string[]
           store_name: string
@@ -51,8 +51,8 @@ export type Database = {
           first_name: string
           id?: string
           last_name: string
-          parent_asins: string
-          product_link: string
+          parent_asins?: string | null
+          product_link?: string | null
           selected_plan: string
           services: string[]
           store_name: string
@@ -64,8 +64,8 @@ export type Database = {
           first_name?: string
           id?: string
           last_name?: string
-          parent_asins?: string
-          product_link?: string
+          parent_asins?: string | null
+          product_link?: string | null
           selected_plan?: string
           services?: string[]
           store_name?: string
