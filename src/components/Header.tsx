@@ -21,21 +21,17 @@ export const Header = () => {
 
   const handleNavigation = (href: string) => {
     if (href.startsWith('/#')) {
-      // If we're not on the home page and trying to access a section
       if (location.pathname !== '/') {
         navigate('/');
-        // Add a small delay to allow the navigation to complete
         setTimeout(() => {
           const element = document.querySelector(href.substring(1));
           element?.scrollIntoView({ behavior: 'smooth' });
         }, 100);
       } else {
-        // If we're already on the home page, just scroll
         const element = document.querySelector(href.substring(1));
         element?.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // For non-anchor links, just navigate
       navigate(href);
     }
   };
@@ -47,9 +43,9 @@ export const Header = () => {
           <a href="/" className="flex items-center space-x-2">
             <div className="relative w-16 h-16">
               <img 
-                src="/lovable-uploads/f3a3a9e1-1184-4623-9309-31dee722768b.png" 
+                src="/lovable-uploads/cf63f306-29f4-4bdd-8c87-432d51ea24c9.png" 
                 alt="Final Upload Logo" 
-                className="w-full h-full object-contain animate-pulse"
+                className="w-full h-full object-contain"
               />
               <div className="absolute -bottom-2 left-0 right-0 w-full">
                 <Progress value={progress} className="h-1" />
